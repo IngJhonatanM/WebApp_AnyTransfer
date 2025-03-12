@@ -1,0 +1,57 @@
+﻿@page
+@model LoginWith2faModel
+@{
+    ViewBag.Title = "Autenticación 2 Factores";
+}
+
+<!doctype html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/_StylesDripLogin.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/myq1feo.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="wrapper d-flex justify-content-between">
+        <div id="ContainerDrip" class="col-md-4 mx-auto rounded ">
+            <div class="loginDrip-form">
+                <section>
+                    <h2 class="item d-flex flex-column"><strong class="fs-4">Iniciar Sesión</strong></h2>
+                    <div class="mb-3 lh-sm">
+                        <p><font size=1>Ingrese su código de autenticación a continuación.</font></p>
+                    </div>
+                    <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                        <input type="hidden" asp-for="RememberMe" />
+                        <div class="text-danger" role="alert" asp-validation-summary="ModelOnly"></div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" autocomplete="off" asp-for="Input.TwoFactorCode" />
+                            <label class="form-label" asp-for="Input.TwoFactorCode"></label>
+                            <span class="text-danger" asp-validation-for="Input.TwoFactorCode"></span>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col d-grid">
+                                <button class="w-100 btn btn-sm btn-primary text-black border border-light" type="submit">Ingresar</button>
+                                <br>
+                            </div>
+                        </div>
+                        <div class=" row mb-1">
+                            <div class="col d-grid">
+                                <button class="w-100 btn btn-sm btn-primary text-black border border-light" type="submit" onclick="document.location.reload();">Reenviar el código</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div id="Elemen-Out-LoginDrip" class="col-md-4 mx-auto rounded col d-grid">
+        <p>Producto creado por<img src="~/images/Identidades-Eniac-Color.png" class="col-md-4" alt="..."></p>
+        <button type="button" class="btn btn-primary btn-sm border border-light text-black">Soporte</button>
+    </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

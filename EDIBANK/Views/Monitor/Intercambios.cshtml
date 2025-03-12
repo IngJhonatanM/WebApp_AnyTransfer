@@ -1,0 +1,337 @@
+﻿@using EDIBANK.Models.Monitor
+@using EDIBANK.Conf_Db_With_Entity
+@inject AppDbContext AppDbContext
+@model MonitorViewModel
+@{
+    bool isAdmin = User.IsInRole("Admin");
+    (string titulo, string rolEDI) = Model.MostrarEntradas switch
+    {
+        true => ("Entradas", "Receptor"),
+        false => ("Salidas", "Emisor")
+    };
+    bool showDecrease = 5 < Model.Talla;
+    bool showIncrease = Model.Talla < 50;
+    bool showPageDown = 0 < Model.TotalPaginas && 0 < Model.Pagina;
+    bool showPageUp = 0 < Model.TotalPaginas && Model.Pagina + 1 < Model.TotalPaginas;
+
+    ViewBag.Title = "Intercambios";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/_StylesDripLayout.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EDIBANK.styles.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    @* ******NavBar"Entradas"******"Salidas" *@
+
+    <div id="ContainerNavbarStyleDrip" class="container-md">
+        <header class="navbar">
+            <div class="center-content">
+                <div class="NavbarStyleDrip">
+                    <h3 id="ModeloE_S" class="display-7 fw-bolder">@titulo</h3>
+                </div>
+            </div>
+            <div class="left-content">
+                <div class="icon-container">
+                    <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="70" viewBox="0,0,256,256">
+                                <g transform="scale(10.66667)" fill="#828282" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="inherit" font-size="none" text-anchor="inherit" style="mix-blend-mode: normal">
+                                    <path d="M10.74414,1.00195c-0.9303,0 -1.7473,0.65505 -1.95117,1.56055c0,0.0013 0,0.0026 0,0.00391l-0.28906,1.29102c-0.64705,0.28086 -1.24732,0.62857 -1.80273,1.04492l-1.26953,-0.39844c-0.8885,-0.27849 -1.86514,0.1025 -2.33008,0.91016l-1.25391,2.17188c-0.46657,0.8059 -0.3091,1.84245 0.37695,2.47266l0.89258,0.82226c-0.04726,0.37065 -0.11719,0.73362 -0.11719,1.11914c0,0.38515 0.07163,0.7484 0.11914,1.11914l-0.89453,0.82226c-0.68389,0.62844 -0.84488,1.66779 -0.37891,2.47266l1.25391,2.17383c0.00065,0 0.0013,0 0.00195,0c0.46484,0.8029 1.44225,1.18648 2.33008,0.9082l1.26953,-0.39844c0.55458,0.41558 1.15478,0.76223 1.80078,1.04297l0.28906,1.29492c0,0.00065 0,0.0013 0,0.00195c0.20338,0.90596 1.02325,1.56055 1.95117,1.56055h2.51172c0.9303,0 1.7473,-0.65505 1.95117,-1.56055c0,-0.00065 0,-0.0013 0,-0.00195l0.28906,-1.29297c0.64705,-0.28086 1.24732,-0.62858 1.80273,-1.04492l1.26953,0.39844c0.88566,0.2776 1.86556,-0.10516 2.33008,-0.91016l1.25391,-2.17188c0.46598,-0.80487 0.30694,-1.84422 -0.37695,-2.47266l-0.89258,-0.82226c0.04751,-0.37074 0.11914,-0.73399 0.11914,-1.11914c0,-0.38448 -0.07179,-0.74706 -0.11914,-1.11719l0.89453,-0.82226c0.68389,-0.62844 0.84293,-1.66974 0.37695,-2.47461l-1.25391,-2.17187c0,-0.00065 0,-0.0013 0,-0.00195c-0.46484,-0.80291 -1.44225,-1.18452 -2.33008,-0.90625l-1.27148,0.39844c-0.55493,-0.41568 -1.15437,-0.76424 -1.80078,-1.04492l-0.28906,-1.29492c-0.20338,-0.90596 -1.02325,-1.5625 -1.95117,-1.5625zM11.14453,3.50195h1.71094l0.3125,1.40039c0.09689,0.43177 0.41481,0.78014 0.83594,0.91602c0.87404,0.28273 1.66672,0.75096 2.3418,1.35938c0.32822,0.29655 0.78873,0.39756 1.21094,0.26563l1.37695,-0.43359l0.85547,1.48242l-1.05664,0.96875c-0.32596,0.29938 -0.46933,0.7488 -0.37695,1.18164c0.09383,0.44127 0.14453,0.89401 0.14453,1.35742c0,0.46341 -0.0507,0.91616 -0.14453,1.35742c-0.09212,0.43186 0.05042,0.88029 0.375,1.17969l1.05664,0.97266l-0.85547,1.48047l-1.37695,-0.43164c-0.42246,-0.1332 -0.88386,-0.03289 -1.21289,0.26367c-0.67329,0.60756 -1.46558,1.07658 -2.33984,1.35938c-0.42164,0.13622 -0.73967,0.48546 -0.83594,0.91797l-0.3125,1.39844h-1.71094l-0.3125,-1.39844c-0.09591,-0.43204 -0.4131,-0.78117 -0.83398,-0.91797c-0.87404,-0.28273 -1.66672,-0.75096 -2.3418,-1.35937c-0.32861,-0.29586 -0.78907,-0.39612 -1.21094,-0.26367l-1.37891,0.43164l-0.85352,-1.48047l1.05664,-0.9707c0.32596,-0.29938 0.46933,-0.7488 0.37695,-1.18164c-0.09383,-0.44127 -0.14453,-0.89401 -0.14453,-1.35742c0,-0.46341 0.05111,-0.91715 0.14453,-1.36133c0.09091,-0.43159 -0.05234,-0.87914 -0.37695,-1.17773l-1.05664,-0.9707l0.85352,-1.48047l1.37891,0.43164c0.42246,0.1332 0.88386,0.03289 1.21289,-0.26367c0.67329,-0.60756 1.46558,-1.07658 2.33984,-1.35937c0.42113,-0.13587 0.73905,-0.48425 0.83594,-0.91602zM12,8c-1.22917,0 -2.30867,0.50594 -2.99609,1.2793c-0.68742,0.77335 -1.00391,1.75543 -1.00391,2.7207c0,0.96528 0.31648,1.94735 1.00391,2.7207c0.68742,0.77335 1.76693,1.2793 2.99609,1.2793c1.22917,0 2.30867,-0.50594 2.99609,-1.2793c0.68742,-0.77335 1.00391,-1.75543 1.00391,-2.7207c0,-0.96528 -0.31648,-1.94735 -1.00391,-2.7207c-0.68742,-0.77335 -1.76693,-1.2793 -2.99609,-1.2793zM12,10.5c0.60417,0 0.89966,0.18156 1.12891,0.43945c0.22924,0.2579 0.37109,0.65082 0.37109,1.06055c0,0.40972 -0.14185,0.80265 -0.37109,1.06055c-0.22924,0.2579 -0.52474,0.43945 -1.12891,0.43945c-0.60417,0 -0.89966,-0.18156 -1.12891,-0.43945c-0.22924,-0.2579 -0.37109,-0.65082 -0.37109,-1.06055c0,-0.40972 0.14185,-0.80265 0.37109,-1.06055c0.22924,-0.2579 0.52474,-0.43945 1.12891,-0.43945z" />
+                                </g>
+                            </svg>
+                        </i>
+                    </a>
+                </div>
+                <partial name="_Loginpartial" />
+            </div>
+        </header>
+    </div>
+    <br />
+
+    @* Selectores de búsqueda *@
+
+    <div class="formulario-contenedor">
+        <form method="get" asp-action="Intercambios">
+            <div class="d-flex align-items-center">
+                <input type="hidden" asp-for="MostrarEntradas" />
+                @if (isAdmin)
+                {
+                    <label class="control-label" asp-for="EDIActual">@rolEDI</label>
+                    @:&nbsp;
+                    <select class="form-control" asp-for="EDIActual" asp-items=@await AppDbContext.EDIs.SelectListAsync(Model.EDIActual)></select>
+                    @:&nbsp;&nbsp;
+                }
+                <label class="control-label" asp-for="Desde"></label>
+                &nbsp;
+                <input class="form-control" min=@Model.Menor max=@Model.Mayor asp-for="Desde" />
+                &nbsp;&nbsp;
+                <label class="control-label" asp-for="Hasta"></label>
+                &nbsp;
+                <input class="form-control" min=@Model.Menor max=@Model.Mayor asp-for="Hasta" />
+                &nbsp;&nbsp;
+                <input type="hidden" asp-for="Talla" />
+                <input type="hidden" value="0" asp-for="Pagina" />
+                <button class="btn btn-light border bi-search" title="Buscar" type="submit"></button>
+            </div>
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        </form>
+    </div>
+    <br />
+
+    @* Monitor *@
+
+    <div class="table-container">
+        <table class="table table-responsive-sm table-striped table-hover table-bordered" id="Tabla_Monitor">
+            <thead id="Tabla_Monitor_head">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(static string (MonitorViewModel m) => m.Intercambios.First().Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static string (MonitorViewModel m) => m.Intercambios.First().EmisorId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static string? (MonitorViewModel m) => m.Intercambios.First().ReceptorId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static string (MonitorViewModel m) => m.Intercambios.First().Numero)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static string? (MonitorViewModel m) => m.Intercambios.First().TipoDocumento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static Status (MonitorViewModel m) => m.Intercambios.First().Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static DateTime (MonitorViewModel m) => m.Intercambios.First().Cargado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static DateTime? (MonitorViewModel m) => m.Intercambios.First().Descargado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(static string (MonitorViewModel m) => m.Intercambios.First().ArchivoIntercambio)
+                    </th>
+                    @if (Model.MostrarEntradas)
+                    {
+                        <th>
+                            Acción
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                @foreach (Intercambio i in Model.Intercambios)
+                {
+                    <tr>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(string (MonitorViewModel m) => i.Id)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(string (MonitorViewModel m) => i.EmisorId)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(string? (MonitorViewModel m) => i.ReceptorId)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(string (MonitorViewModel m) => i.Numero)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(string? (MonitorViewModel m) => i.TipoDocumento)
+                        </td>
+                        <td class="text-nowrap @(i.Status switch { Status.DISPONIBLE => "text-success", Status.RECHAZADO => "text-danger", _ => string.Empty })">
+                            @Html.DisplayFor(Status (MonitorViewModel m) => i.Status)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(DateTime (MonitorViewModel m) => i.Cargado)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(DateTime? (MonitorViewModel m) => i.Descargado)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(string (MonitorViewModel m) => i.ArchivoIntercambio)
+                        </td>
+                        @if (Model.MostrarEntradas)
+                        {
+                            <td class="text-nowrap d-flex justify-content-end">
+                                @if (i.Status is Status.DESCARGADO or Status.ANULADO)
+                                {
+                                    <button class="btn-sm btn-success bi bi-arrow-repeat" title="Recargar" type="button" data-bs-toggle="modal" data-bs-target="#intercambiosModal" data-bs-accion="Recargar" data-bs-id="@i.Id"></button>
+                                }
+                                else
+                                {
+                                    <span class="btn-sm btn-secondary bi bi-arrow-repeat" title="Recargar&#10;(No disponible)"></span>
+                                }
+                                @if (i.Status is Status.DISPONIBLE)
+                                {
+                                    <button class="btn-sm btn-danger bi bi-x-lg" title="Anular" type="button" data-bs-toggle="modal" data-bs-target="#intercambiosModal" data-bs-accion="Anular" data-bs-id="@i.Id"></button>
+                                }
+                                else
+                                {
+                                    <span class="btn-sm btn-secondary bi bi-x-lg" title="Anular&#10;(No disponible)"></span>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+                @* @for (int i = 0; i < Model.Talla - Model.Intercambios.Count(); ++i)
+                {
+                    <tr>
+                        <td colspan="9">
+                            &nbsp;
+                        </td>
+                        @if (Model.MostrarEntradas)
+                        {
+                            <td class="text-nowrap d-flex justify-content-end">
+                                <span class="btn-sm btn-secondary bi bi-arrow-repeat" title="Recargar&#10;(No disponible)"></span>
+                                <span class="btn-sm btn-secondary bi bi-x-lg" title="Anular&#10;(No disponible)"></span>
+                            </td>
+                        }
+                    </tr>
+                } *@
+            </tbody>
+        </table>
+    </div>
+
+    @* Diálogo modal *@
+    @* re: https://getbootstrap.com/docs/5.1/components/modal/#varying-modal-content *@
+
+    <div class="modal fade py-5" id="intercambiosModal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-body p-4 text-center">
+                    <h5 class="mb-0" id="titulo"></h5>
+                    <p class="mb-0" id="contenido"></p>
+                </div>
+                <form class="modal-footer flex-nowrap p-0" method="post" id="accion">
+                    <input type="hidden" id="MostrarEntradas" name="MostrarEntradas" value="@($"{Model.MostrarEntradas}")" />
+                    <input type="hidden" id="EDIActual" name="EDIActual" value="@Model.EDIActual" />
+                    <input type="hidden" id="Desde" name="Desde" value="@($"{Model.Desde:yyyy-MM-dd}")" />
+                    <input type="hidden" id="Hasta" name="Hasta" value="@($"{Model.Hasta:yyyy-MM-dd}")" />
+                    <input type="hidden" id="Talla" name="Talla" value="@Model.Talla" />
+                    <input type="hidden" id="Pagina" name="Pagina" value="@Model.Pagina" />
+                    <input type="hidden" id="Id" name="Id" />
+                    <button class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-right" type="submit"><strong>Aceptar</strong></button>
+                    <button class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" type="button" data-bs-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('intercambiosModal').addEventListener('shown.bs.modal', function (event) {
+            const datos = event.relatedTarget.dataset
+
+            document.getElementById('titulo').textContent = datos.bsAccion + ' Documento'
+            document.getElementById('contenido').textContent = '#Tracking: ' + datos.bsId
+            document.getElementById('accion').setAttribute('action', '/Monitor/' + datos.bsAccion)
+            document.getElementById('Id').value = datos.bsId
+        })
+    </script>
+
+    @* Paginación *@
+
+    <div class="d-flex justify-content-center">
+        <form method="get" asp-action="Intercambios">
+            <input type="hidden" asp-for="MostrarEntradas" />
+            @if (isAdmin)
+            {
+                <input type="hidden" asp-for="EDIActual" />
+            }
+            <input type="hidden" value=@($"{Model.Desde:yyyy-MM-dd}") asp-for="Desde" />
+            <input type="hidden" value=@($"{Model.Hasta:yyyy-MM-dd}") asp-for="Hasta" />
+            <nav>
+                <ul class="pagination">
+                    <li class="@(showDecrease ? "page-item" : "page-item disabled")">
+                        @if (showDecrease)
+                        {
+                            <button class="page-link bi bi-dash-lg" type="submit" name="Talla" value=@(Model.Talla - 1)></button>
+                        }
+                        else
+                        {
+                            <span class="page-link bi bi-dash-lg"></span>
+                        }
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link">@Model.Talla</span>
+                    </li>
+                    <li class="@(showIncrease ? "page-item" : "page-item disabled")">
+                        @if (showIncrease)
+                        {
+                            <button class="page-link bi bi-plus-lg" type="submit" name="Talla" value=@(Model.Talla + 1)></button>
+                        }
+                        else
+                        {
+                            <span class="page-link bi bi-plus-lg"></span>
+                        }
+                    </li>
+                </ul>
+            </nav>
+            <input type="hidden" value="0" asp-for="Pagina" />
+        </form>
+        <form method="get" asp-action="Intercambios">
+            <input type="hidden" asp-for="MostrarEntradas" />
+            @if (isAdmin)
+            {
+                <input type="hidden" asp-for="EDIActual" />
+            }
+            <input type="hidden" value=@($"{Model.Desde:yyyy-MM-dd}") asp-for="Desde" />
+            <input type="hidden" value=@($"{Model.Hasta:yyyy-MM-dd}") asp-for="Hasta" />
+            <input type="hidden" asp-for="Talla" />
+            <nav>
+                <ul class="pagination">
+                    <li class="@(showPageDown ? "page-item" : "page-item disabled")">
+                        @if (showPageDown)
+                        {
+                            <button class="page-link bi bi-chevron-double-left" type="submit" name="Pagina" value=@(Model.Pagina - 1)></button>
+                        }
+                        else
+                        {
+                            <span class="page-link bi bi-chevron-double-left"></span>
+                        }
+                    </li>
+                    @if (Model.TotalPaginas is 0)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link bi bi-dash-lg"></span>
+                        </li>
+                    }
+                    @for (int i = 0; i < Model.TotalPaginas; ++i)
+                    {
+                        <li class="@(i == Model.Pagina ? "page-item active" : "page-item")">
+                            <button class="page-link" type="submit" name="Pagina" value=@i>@(i + 1)</button>
+                        </li>
+                    }
+                    <li class="@(showPageUp ? "page-item" : "page-item disabled")">
+                        @if (showPageUp)
+                        {
+                            <button class="page-link bi bi-chevron-double-right" type="submit" name="Pagina" value=@(Model.Pagina + 1)></button>
+                        }
+                        else
+                        {
+                            <span class="page-link bi bi-chevron-double-right"></span>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </form>
+    </div>
+
+    @* et cetera *@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

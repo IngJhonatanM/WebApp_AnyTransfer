@@ -1,0 +1,54 @@
+﻿@page "/Account/Login"
+@model LoginModel
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<!doctype html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/_StylesDripLogin.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/myq1feo.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="wrapper d-flex justify-content-between">
+        <div id="ContainerDrip" class="col-md-4 mx-auto rounded ">
+            <div class="loginDrip-form">
+                <section>
+                    <h2 class="item d-flex flex-column"><strong>Iniciar Sesión</strong></h2>
+                    <form id="account" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Correo</label>
+                            <input class="form-control" autocomplete="username" placeholder="correo@dominio.com" asp-for="Input.Email" />
+                            <span class="text-danger" asp-validation-for="Input.Email"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input class="form-control" placeholder="⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎⁎" asp-for="Input.Password" />
+                            <span class="text-danger" asp-validation-for="Input.Password"></span>
+                        </div>
+                        <div class="mb-1 row">
+                            <div class="col d-grid">
+                                <button class="btn btn-primary btn-sm border border-light text-black" type="submit">Iniciar Sesión</button>
+                                <a class="text-center" id="MoreInfo" href="https://www.eniac.com/">Más información</a>
+                            </div>
+                        </div>
+                        <div class="m-1 text-center">
+                            <a class="link-dark small fw-bolder" id="forgot-password" asp-page="./ForgotPassword">¿Olvidó su contraseña?</a>
+                        </div>
+                    </form>
+                    <div class="text-danger" role="alert" asp-validation-summary="ModelOnly"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mx-auto rounded col d-grid" id="Elemen-Out-LoginDrip">
+        <p>Producto creado por<img src="~/images/Identidades-Eniac-Color.png" class="col-md-4" alt="..."></p>
+        <a class="btn btn-primary btn-sm border border-light text-black" asp-area="" asp-controller="Home" asp-action="Contact">Soporte</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EDIBANK.Conf_Db_With_Entity
+@using EDIBANK.Models.Users_EdiWeb
+@inject RoleManager<IdentityRole> RoleManager
+@inject AppDbContext AppDbContext
+@model UserViewModel
+@{
+    ViewBag.Title = "Crear Usuario";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<br />
+<h2 class="bg-body text-white fw-bolder">@ViewBag.Title</h2>
+<br />
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label class="control-label" asp-for="DisplayName"></label>
+        <input class="form-control" asp-for="DisplayName" />
+        <span class="text-danger" asp-validation-for="DisplayName"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Password"></label>
+        <input class="form-control" asp-for="Password" />
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="RoleName"></label>
+        <select class="form-control" asp-for="RoleName" asp-items=@await RoleManager.Roles.SelectListAsync(Model.RoleName)></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="EDIId"></label>
+        <select class="form-control" asp-for="EDIId" asp-items=@await AppDbContext.EDIs.SelectListAsync(Model.EDIId)></select>
+    </div>
+    <br />
+    <button class="btn btn-primary bi bi-person-fill-add" type="submit">&nbsp;Crear</button>
+    <br />
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+</form>
+<a class="btn btn-secondary bi bi-rewind" asp-action="Index">&nbsp;Volver</a>

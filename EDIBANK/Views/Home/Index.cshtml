@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page"; 
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcomeeee</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@{
+    <h1>Current Date in Form</h1>
+    <form>
+        <label for="current-date">Today's Date:</label>
+        <input type="date" id="current-date" name="current-date">
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // Get the current date
+        const today = new Date();
+
+        // Format the date to YYYY-MM-DD
+        const formattedDate = today.toISOString().split('T')[0];
+
+        // Set the value of the input field to the current date
+        document.getElementById('current-date').value = formattedDate;
+    </script>
+}

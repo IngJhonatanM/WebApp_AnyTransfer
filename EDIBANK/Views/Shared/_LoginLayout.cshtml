@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - ANYTRANSFER</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/_StylesLogin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EDIBANK.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/images/Identidades-Eniac-Favicon-Color.png">
+    <script type="importmap"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1"></ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="Elemen-Out-LoginDrip" class="col-md-4 mx-auto rounded col">
+        <a asp-area="" asp-controller="Monitor" asp-action="Intercambios"><img class="img-fluid" src="~/images/AnytransferLogoTest.png" alt="…"> </a>
+    </div>
+    <div class="container">
+        <main class="pb-3" role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-0 footer text-muted text-center">
+        <div class="container">
+            Todos Los Derechos Reservados Eniac &copy; 2025
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

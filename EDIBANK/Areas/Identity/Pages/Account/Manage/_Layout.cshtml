@@ -1,0 +1,55 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<h1>Administre su cuenta</h1>
+
+<div>
+    <h2>Configuración de tu cuenta</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@{
+    <script>
+        (function () {
+
+            const idleDurationSecs = 130;    // X number of seconds
+            const redirectUrl = '/Home/_SessionExpireNotification';  // Redirect idle users to this URL
+            let IdleTimeout; // variable to hold the timeout, do not modify
+
+            const resetIdleTimeout = function () {
+
+                // Set a new idle timeout to load the redirectUrl after idleDurationSecs
+                IdleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
+            };
+
+            // Init on page load
+            resetIdleTimeout();
+
+            // Reset the idle timeout on any of the events listed below
+            ['click', 'touchstart', 'mousemove'].forEach(evt =>
+                document.addEventListener(evt, resetIdleTimeout, false)
+            );
+
+        })();
+    </script>
+}
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

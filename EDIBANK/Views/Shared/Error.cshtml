@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/Error.cshtml";
+}
+@model ErrorViewModel
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <span class="fw-bolder">Request ID:</span> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>Development Mode</h3>
+<p>
+    Swapping to <span class="fw-bolder">Development</span> environment will display more detailed information about the error that occurred.
+</p>
+<p>
+    <span class="fw-bolder">The Development environment shouldn't be enabled for deployed applications.</span>
+    It can result in displaying sensitive information from exceptions to end users.
+    For local debugging, enable the <span class="fw-bolder">Development</span> environment by setting the <span class="fw-bolder">ASPNETCORE_ENVIRONMENT</span> environment variable to <span class="fw-bolder">Development</span>
+    and restarting the app.
+</p>

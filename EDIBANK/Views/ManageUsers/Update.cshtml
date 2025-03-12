@@ -1,0 +1,34 @@
+﻿@using EDIBANK.Models.Users_EdiWeb
+@model AppUser
+@{
+    ViewBag.Title = "Actualizar Usuario";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<br />
+<h2 class="bg-body text-white fw-bolder">@ViewBag.Title</h2>
+<br />
+<form method="post" asp-action="Update">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label class="control-label" asp-for="Email">Correo</label>
+        <input class="form-control" asp-for="Email" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="DisplayName"></label>
+        <input class="form-control" asp-for="DisplayName" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="password">Contraseña</label>
+        <input class="form-control" name="password" placeholder="Sin cambios" />
+    </div>
+    <br />
+    <button class="btn btn-primary bi bi-person-fill-check" type="submit">&nbsp;Actualizar</button>
+    <br />
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+</form>
+<br />
+<form method="post" asp-action="UnblockUser">
+    <button class="btn btn-outline-success bi bi-unlock-fill" type="submit" asp-route-id="@Model.Id">&nbsp;Desbloquear Usuario</button>
+</form>
+<a class="btn btn-secondary bi bi-rewind" asp-action="Index">&nbsp;Volver</a>

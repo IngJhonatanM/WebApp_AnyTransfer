@@ -1,0 +1,37 @@
+﻿@inject SignInManager<AppUser> SignInManager
+
+<ul class="nav nav-pills flex-column">
+    @if ((await SignInManager.GetExternalAuthenticationSchemesAsync()).Any())
+    {
+        <li class="nav-item" id="external-logins">
+            <a class="nav-link  id=" external-login"@ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">Ingresos externos</a>
+        </li>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">email</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Contraseña</a>
+        </li>
+        @* <li class="nav-item">
+            <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Autenticación de dos factores</a>
+        </li> *@
+        <li class="nav-item">
+            <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Datos personales</a>
+        </li>
+    }
+    @if (User.IsInRole("User"))
+    {
+        <li class="nav-item">
+            <a class="nav-link btn btn-secondary border border-light text-black text-start @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-secondary border border-light text-black text-start @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Contraseña</a>
+        </li>
+    }
+</ul>

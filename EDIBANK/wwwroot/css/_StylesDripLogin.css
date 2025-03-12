@@ -1,0 +1,85 @@
+/* Formas del cuadro (login) y de los elementos adentros de el */
+
+#ContainerDrip {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#ContainerDrip {
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    border-color: #16539D;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.loginDrip-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Campos de entrada del login */
+.loginDrip-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Botones de login */
+.loginDrip-form button {
+    background-color: #87a9c9;
+    color: white;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Mas informacion */
+#MoreInfo {
+    font-size: 13px;
+    margin-top: 0.5em;
+}
+
+/* Elementos fuera (Arriba) del login */
+
+#Elemen-Out-LoginDrip {
+    text-align: center;
+    padding: 15px;
+    line-height: 0.5625rem;
+}
+
+    #Elemen-Out-LoginDrip button {
+        background-color: #87a9c9;
+        color: white;
+        padding: 4px 6px;
+        border: none;
+        width: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #Elemen-Out-LoginDrip p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #Elemen-Out-LoginDrip a {
+        text-decoration: none;
+    }
+
+/* Estilos para el cuerpo del login */
+
+body {
+    font-family: "myriad-pro-semibol", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #f0f0f0;
+    height: 100vh;
+    margin: 0;
+}

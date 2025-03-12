@@ -1,0 +1,44 @@
+﻿@page
+@model EmailModel
+@{
+    ViewBag.Title = "Administrar email";
+    ViewBag.ActivePage = ManageNavPages.Email;
+}
+
+<h3>@ViewBag.Title</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="email-form" method="post">
+            <div class="text-danger" role="alert" asp-validation-summary="All"></div>
+            @if (Model.IsEmailConfirmed)
+            {
+                <div class="form-floating mb-3 input-group">
+                    <input class="form-control" placeholder="Please enter your email." disabled asp-for="Email" />
+                    <div class="input-group-append">
+                        <span class="h-100 input-group-text text-success font-weight-bold bi bi-check"></span>
+                    </div>
+                    <label class="form-label" asp-for="Email"></label>
+                </div>
+            }
+            else
+            {
+                <div class="form-floating mb-3">
+                    <input class="form-control" placeholder="Please enter your email." disabled asp-for="Email" />
+                    <label class="form-label" asp-for="Email"></label>
+                    <button class="btn btn-link" id="email-verification" type="submit" asp-page-handler="SendVerificationEmail">Send verification email</button>
+                </div>
+            }
+            <div class="form-floating mb-3">
+                <input class="form-control" autocomplete="email" placeholder="Please enter new email." aria-required="true" asp-for="Input.NewEmail" />
+                <label class="form-label" asp-for="Input.NewEmail"></label>
+                <span class="text-danger" asp-validation-for="Input.NewEmail"></span>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" id="change-email-button" type="submit" asp-page-handler="ChangeEmail">Change email</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

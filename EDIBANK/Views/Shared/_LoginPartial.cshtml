@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EDIBANK.Models.Users_EdiWeb
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<a hidden id="myId"></a>
+<a hidden id="demo"></a>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <script>
+        setInterval(myTimer, 1000);
+
+        function myTimer() {
+        const d = new Date();
+        document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+        }
+    </script>
+
+    @* <script>
+        var date = new Date();
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1;
+        var yyyy = date.getFullYear();
+        var newDate = new Date().toLocaleDateString('es-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+        var time = " |  "
+        var formata = "&#8232";
+        var p = document.getElementById("myId");
+        p.innerHTML = newDate + "&#32" + time + formata;
+    </script>
+    <li class="nav-item active">
+        <a class="nav-link btn btn-outline-secondary text-dark border-0" id="manage" title="Manage" asp-area="Identity" asp-page="/Account/Manage/Index">¡Saludos @UserManager.GetUserName(User)!</a>
+    </li> *@
+
+    string[] partes = (await UserManager.GetUserAsync(User))!.DisplayName.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+    string iniciales = partes switch
+    {
+        [] => string.Empty,
+        [_] => $"{partes[0][0]}",
+        [_, _] or [_, _, _] => $"{partes[0][0]}{partes[1][0]}",
+        _ => $"{partes[0][0]}{partes[2][0]}"
+    };
+
+    <div class="icon-container_loginPartial">
+        <div class="mi-elemento-circular" id="user-circle">
+            <a id="TextColor_Icons">@iniciales</a>
+        </div>
+        <div class="options" id="user-options">
+            <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = string.Empty })">
+                <button class="nav-link btn btn-outline-secondary text-black border-0" type="submit" id="logout">Salir</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const circle = document.getElementById('user-circle');
+        const options = document.getElementById('user-options');
+        circle.addEventListener('click', () =>
+            {
+                options.style.display = options.style.display === 'block' ? 'none' : 'block';
+            });
+    </script>
+
+    @* <li class="">
+            <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = string.Empty })">
+                <button class="nav-link btn btn-outline-secondary text-dark border-0" type="submit" id="logout">Salir</button>
+            </form>
+        </li> *@
+}
