@@ -1,113 +1,21 @@
 /* =========
-   Estilos Para El Cuerpo De la pagina.
+   Estilos Para La Pagina Principal Manage Users.
    ========= */
 
+/* Estilos Para El Cuerpo */
+
 body {
-    background-color: #f0f0f0;
-}
-
-
-/* Formas (Contenedores) del Header, los elementos adentros de el y el Navbar */
-
-#ContainerNavbarStyleDrip {
-}
-
-    #ContainerNavbarStyleDrip a:hover {
-        position: relative; /* Necesario para posicionar el subrayado */
-        bottom: 8.3px;
-    }
-
-.navbar {
-    display: inline-flex;
-    justify-content: right; /* Distribuye el icono/login y el título */
-    align-items: center; /* Centra verticalmente los elementos */
-    padding: 1rem; /* Ajusta el padding según necesites */
-    width: 100%; /* Asegura que el navbar ocupe todo el ancho */
-    box-sizing: border-box; /* Incluye padding y border en el ancho */
-    position: relative; /* Para el posicionamiento relativo del ::after */
-}
-
-/* Estilos para el contenedor del icono y el login */
-
-.left-content {
-    display: inline-flex;
-    align-items: center; /* Centra verticalmente el icono y el login */
-    position: absolute;
-}
-
-.icon-container {
-    margin-right: 1rem; /* Espacio entre el icono y el login */
-}
-
-    .icon-container a:hover {
-        color: #6e6c6d;
-    }
-
-.login-container {
-}
-
-
-/* Estilos, posicionamiento, y efectos para el Navbar */
-
-.NavbarStyleDrip {
-    margin-top: 38px; /* Añade un margen superior */
-    position: relative;
-    height: 38px;
-    bottom: 8px;
-    margin-right: 72em;
-    width: 100%;
-}
-
-    .NavbarStyleDrip :after {
-        content: "";
-        position: absolute;
-        border-radius: 6px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 6px;
-        margin-left: -10px;
-        background-color: #b3b3b3;
-        top: 1.6em;
-    }
-
-    .NavbarStyleDrip a:hover::after {
-        transform: scaleX(1);
-    }
-
-    .NavbarStyleDrip a {
-    }
-
-/* Estilos para el contenedor del título */
-.center-content {
-    /* Puedes agregar estilos específicos para el título si lo deseas */
-}
-
-#ModeloE_S {
-    font-size: 2em;
-    font-family: "myriad-pro-semibol", sans-serif;
-    font-weight: 800;
+    /*font-family: "myriad-pro-semibol", sans-serif;
+    font-weight: 700;*/
     font-style: normal;
-    height: 100vh;
-}
-
-@media (max-width: 1536px) {
-    .NavbarStyleDrip {
-        margin-top: 8px; /* Añade un margen superior */
-        position: relative;
-        height: 38px;
-        bottom: 8px;
-        margin-right: 65em;
-        width: 100%;
-    }
+    background-color: #f0f0f0;
+    /*height: 100vh;
+    margin: 0;*/
 }
 
 /* =========
-    Estilos Para el NavBar En Pantalla Mediana
+   Estilos Para Sidebar
    ========= */
-
-/*Estilos Para Sidebar*/
 
 /* -
 
@@ -197,9 +105,12 @@ input, textarea {
     transition: all .2s ease-in-out;
 }
 
+
+/*Estilos para inputs globales (revisar con cuidado)*/
+
     input:hover, input:focus, textarea:hover, textarea:focus {
-        box-shadow: 0 0 0 2px hsl(var(--black)), 0 0 0 3px hsl(var(--white));
-        border: 2px solid transparent;
+        box-shadow: 0 0 0 1.7px hsl(209.4, 100%, 20%), 0 0 0 3px hsl(var(--white));
+        border: 1.5px solid transparent;
     }
 
 select {
@@ -238,6 +149,7 @@ select {
     justify-content: flex-end;
     align-items: center;
 }
+
 /* Columns */
 .flexbox-col {
     display: flex;
@@ -273,6 +185,7 @@ select {
     flex-direction: column;
     align-items: center;
 }
+
 /* Spacings */
 .flexbox-space-bet {
     display: flex;
@@ -516,6 +429,7 @@ select {
 }
 
 /* Estilos para el dropdown */
+
 .dropdown {
     position: relative;
 }
@@ -551,6 +465,7 @@ select {
             }
 
 /* Muestra el submenú cuando se activa */
+
 .dropdown.active .dropdown-menu {
     display: block;
     list-style: none;
@@ -558,6 +473,7 @@ select {
 }
 
 /* Estilo para el ícono del dropdown */
+
 .dropdown-icon {
     margin-left: auto;
     transition: transform 0.3s ease;
@@ -567,66 +483,29 @@ select {
     transform: rotate(180deg);
 }
 
-/* Estilo para el ícono circular que contiene las iniciales de los usuarios*/
-
-.mi-elemento-circular {
-    position: relative;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: #87aaca;
-    display: flex; /* Para alinear los elementos internos */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    padding: 5px;
-    cursor: pointer;
-    font-style: normal;
-    font-weight: 600;
-}
-
-#TextColor_Icons {
-    color: #ffffff !important
-}
-
-.options {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 100;
-}
-
-    .options a {
-        display: block;
-        color: #333;
-        text-decoration: none;
-        padding: 5px;
-    }
 
 /* =========
     Estilos Para el Monitor
    ========= */
 
-.table-container {
-}
-
-#Tabla_Monitor {
+#Tabla_Monitor2 {
+    display:table;
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: inherit;
     border: 2.3px solid #87aaca;
+    text-align: center;
 }
 
-#Tabla_Monitor_head {
+#Tabla_Monitor_head2 {
     background-color: #87aaca;
     font-weight: normal !important;
-    font-size: 13px;
+    font-size: 13.50px;
+    text-align: center;
 }
 
-    #Tabla_Monitor_head th {
-        color: black;
-        text-align: left;
+    #Tabla_Monitor_head2 th {
+        color: #003466;
+        text-align: center;
         width: 10%;
         padding: 10px;
         border: 1px solid #87aaca;
@@ -637,49 +516,150 @@ select {
     color: black;
     padding: 8px 12px;
     border: 1px solid #87aaca;
-    text-align: left;
-}
-
-.btn-danger {
-    color: #fff;
-    background-color: #7aafcd;
-    border-color: #7aafcd;
-}
-
-.btn-success {
-    color: #fff;
-    background-color: #7aafcd;
-    border-color: #7aafcd;
+    text-align: center;
 }
 
 /* =========
-    Estilos Para los selectores de busqueda de fecha
+    Estilos Para Modulo "Create" De La Pagina Manage Users
    ========= */
 
-.formulario-contenedor {
-    display: inline-flex;
-    padding: 0 20px 20px;
-    color: #666c77;
-    position: relative;
-    max-width: 800px;
-    /* Ancho máximo del formulario */
-    margin: 0 auto; /* Centrar el formulario */
-    /* Relleno del contenedor */
-    color: #666c77;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-    /* Estilos para los elementos del formulario */
-    .formulario-contenedor .form-control {
-        width: 100%; /* Ancho completo en pantallas pequeñas */
-        margin-bottom: 2px; /* Margen inferior entre campos */
+#Formrcrtuser {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 15%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#Formrcrtuser header {
+  margin: 0 0 12px 0; 
+}
+
+#Formrcrtuser div {
+  font-size: 98%;
+  color: #003466;
+}
+
+#Formrcrtuser > div {
+  clear: both;
+  overflow: hidden;
+  padding: 1px;
+  margin: 0 0 10px 0;
+}
+
+#Formrcrtuser form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ #Formrcrtuser  form-group label {
+        flex-basis: 30%;
+        padding-right: 10px;
+        text-align: left;
+        align-self: center;
     }
 
 
-select.form-control:not([size]):not([multiple]) {
-    height: calc(1.5rem + 2px);
+#Formrcrtuser  form-group select {
+        flex-basis: 43%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
+    #Formrcrtuser form-group input {
+        flex-basis: 43%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    #Formrcrtuser text-danger {
+        color: red;
+        font-size: 0.9em;
+        flex-basis: 100%;
+    }
+
+
+#Formrcrtuser btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
+
+#Formrcrtuser btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+#Formrcrtuser btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    margin-top: 10px;
+}
+
+#Contenedor_Bottom_Back1 {
+    margin-top: 20px;
+    text-align: left;
+}
+
+
+#RoleName {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #003466;
+    background-color: #f8f8f8;
+    text-transform: none;
+}
+
+
+#EDIId {
+    color: #003466;
+    border: 2px solid hsl(209.4, 100%, 20%)
+}
+
+
+
+/* Media Query para pantallas menores a 600px */
+@media (max-width: 600px) {
+    .form-group {
+        flex-direction: column;
+    }
+
+        .form-group label {
+            text-align: left;
+            flex-basis: 100%;
+            padding-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            flex-basis: 100%;
+        }
+}
+
+/* Media Query para pantallas mayores a 1200px */
+@media (min-width: 1200px) {
+    .form-group label {
+        text-align: right;
+    }
+}
 /* =========
     Estilos Para el Monitor  y selector de fecha en pantallas pequeña entre 1281px y 1536px
    ========= */
@@ -709,112 +689,47 @@ select.form-control:not([size]):not([multiple]) {
             min-width: 50px;
             border: 1px solid #ddd; /* Agrega bordes para mayor claridad */
             padding: 8px;
-            text-align: left;
+            text-align: center;
             white-space: nowrap; /* Evita que el texto se envuelva */
             overflow: hidden; /* Oculta el texto que se desborda */
             text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al texto truncado */
             min-width: 120px; /* Ancho mínimo para las columnas (ajusta según sea necesario) */
         }
-
-
-
-    /* Estilos para pantallas entre 1281px y 1536px  Para el selector */
-
-    .formulario-contenedor {
-        display: inline-flex;
-        padding: 0 20px;
-        color: #666c77;
-        position: relative;
-        max-width: 800px;
-        /* Ancho máximo del formulario */
-        margin-left: 8em; /* Centrar el formulario */
-        /* Relleno del contenedor */
-        color: #666c77;
-    }
-
-        /* Estilos para los elementos del formulario */
-        .formulario-contenedor .form-control {
-            width: 100%; /* Ancho completo en pantallas pequeñas */
-            margin-bottom: 2px; /* Margen inferior entre campos */
-        }
-
-
-select.form-control:not([size]):not([multiple]) {
-    height: calc(1.5rem + 2px);
-}
 }
 
-/* =========
-    Estilos Para el Monitor, Navbar y selector de fecha en pantallas  1280 e inferiores
+    /* =========
+    Estilos Para el Monitor en pantallas  1280 e inferiores
    ========= */
 
-@media (max-width: 1280px) {
+    @media (max-width: 1280px) {
 
-    /* Estilos, posicionamiento, para el Navbar (titulo) */
+        /* Estilos Para el Monitor */
 
-    .NavbarStyleDrip {
-        margin-top: 8px; /* Añade un margen superior */
-        position: relative;
-        height: 38px;
-        bottom: 8px;
-        margin-right: 51.6em;
-        width: 100%;
-    }
-
-    /* Estilos Para el Monitor */
-
-    .table-container {
-        overflow-x: auto; /* Permite el scroll horizontal en pantallas pequeñas */
-        width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-        margin-left: 45px;
-    }
-
-
-        .table-container table {
-            border-collapse: collapse;
-            transform: scale(1);
-            transform-origin: top right;
-            margin-left: 100px;
-            text-align: center;
+        .table-container {
+            overflow-x: auto; /* Permite el scroll horizontal en pantallas pequeñas */
+            width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+            margin-left: 81px;
         }
 
 
-        .table-container th, td {
-            min-width: 50px;
-            border: 1px solid #ddd; /* Agrega bordes para mayor claridad */
-            padding: 8px;
-            text-align: left;
-            white-space: nowrap; /* Evita que el texto se envuelva */
-            overflow: hidden; /* Oculta el texto que se desborda */
-            text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al texto truncado */
-            min-width: 120px; /* Ancho mínimo para las columnas (ajusta según sea necesario) */
-        }
+            .table-container table {
+                border-collapse: collapse;
+                transform: scale(1);
+                transform-origin: top right;
+                margin-left: 100px;
+                text-align: center;
+            }
 
 
-
-    /* Estilos Para el selector */
-
-    .formulario-contenedor {
-        display: inline-flex;
-        padding: 0 20px;
-        color: #666c77;
-        position: relative;
-        max-width: 800px;
-        /* Ancho máximo del formulario */
-        margin-left: 10.6em; /* Centrar el formulario */
-        /* Relleno del contenedor */
-        color: #666c77;
+            .table-container th, td {
+                min-width: 50px;
+                border: 1px solid #ddd; /* Agrega bordes para mayor claridad */
+                padding: 8px;
+                text-align: center;
+                white-space: nowrap; /* Evita que el texto se envuelva */
+                overflow: hidden; /* Oculta el texto que se desborda */
+                text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al texto truncado */
+                min-width: 120px; /* Ancho mínimo para las columnas (ajusta según sea necesario) */
+            }
     }
-
-        /* Estilos para los elementos del formulario */
-        .formulario-contenedor .form-control {
-            width: 100%; /* Ancho completo en pantallas pequeñas */
-            margin-bottom: 2px; /* Margen inferior entre campos */
-        }
-
-
-    select.form-control:not([size]):not([multiple]) {
-        height: calc(1.5rem + 2px);
-    }
-}
 

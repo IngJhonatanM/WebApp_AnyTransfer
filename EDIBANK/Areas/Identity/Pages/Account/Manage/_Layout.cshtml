@@ -12,7 +12,7 @@
 <h1>Administre su cuenta</h1>
 
 <div>
-    <h2>Configuración de tu cuenta</h2>
+    <h4>Configuración de tu cuenta</h4>
     <hr />
     <div class="row">
         <div class="col-md-3">
@@ -24,11 +24,15 @@
     </div>
 </div>
 
+<div id="Contenedor_Bottom" class="position-relative">
+    <a href="/Monitor/Intercambios" class="btn btn-secondary bi bi-rewind position-absolute top-0 end-0">&nbsp;Volver</a>
+</div>
+
 @{
     <script>
         (function () {
 
-            const idleDurationSecs = 130;    // X number of seconds
+            const idleDurationSecs = 600;    // X number of seconds
             const redirectUrl = '/Home/_SessionExpireNotification';  // Redirect idle users to this URL
             let IdleTimeout; // variable to hold the timeout, do not modify
 

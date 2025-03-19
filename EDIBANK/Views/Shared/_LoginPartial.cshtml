@@ -51,6 +51,11 @@
             </form>
         </div>
     </div>
+
+    @*  =========
+   Interacion Para El Icono Circulo Que Obtiene Iniciales De Los Nombres.
+   =========*@
+
     <script>
         const circle = document.getElementById('user-circle');
         const options = document.getElementById('user-options');
@@ -59,10 +64,4 @@
                 options.style.display = options.style.display === 'block' ? 'none' : 'block';
             });
     </script>
-
-    @* <li class="">
-            <form class="form-inline" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = string.Empty })">
-                <button class="nav-link btn btn-outline-secondary text-dark border-0" type="submit" id="logout">Salir</button>
-            </form>
-        </li> *@
 }
