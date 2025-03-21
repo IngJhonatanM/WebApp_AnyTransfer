@@ -198,8 +198,8 @@ input, textarea {
 }
 
     input:hover, input:focus, textarea:hover, textarea:focus {
-        box-shadow: 0 0 0 2px hsl(var(--black)), 0 0 0 3px hsl(var(--white));
-        border: 2px solid transparent;
+        box-shadow: 0 0 0 2px hsl(209.4, 100%, 20%), 0 0 0 3px hsl(var(--white));
+        /*border: 2px solid transparent;*/
     }
 
 select {
@@ -818,3 +818,155 @@ select.form-control:not([size]):not([multiple]) {
     }
 }
 
+/* =========
+    Estilos Para el Monitor Del Manager
+   ========= */
+
+#Tabla_Monitor2 {
+    display: table;
+    width: 100%;
+    border-collapse: inherit;
+    border: 2.3px solid #87aaca;
+    text-align: center;
+}
+
+#Tabla_Monitor_head2 {
+    background-color: #87aaca;
+    font-weight: normal !important;
+    font-size: 13.50px;
+    text-align: center;
+}
+
+    #Tabla_Monitor_head2 th {
+        color: #000;
+        width: 10%;
+        padding: 10px;
+        border: 1px solid #87aaca;
+        text-align: center;
+    }
+
+#Tabla_Monitor_Th td {
+    color: black;
+    padding: 8px 12px;
+    border: 1px solid #87aaca;
+    text-align: left;
+}
+
+
+/* Estilos para pantallas  Para Monitor Del Manager */
+
+@media (min-width: 1281px) and (max-width: 1536px) {
+
+    .table-container {
+        overflow-x: auto; /* Permite el scroll horizontal en pantallas pequeñas */
+        width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+        margin-left: 45px;
+    }
+
+    .table-bordered > :not(caption) > * > * {
+        text-align:center;
+    }
+
+    /* =========
+    Estilos Para La Vista Para El Create User
+   ========= */
+
+    #Formrcrtuser {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px 15%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+        #Formrcrtuser header {
+            margin: 0 0 12px 0;
+        }
+
+        #Formrcrtuser div {
+            font-size: 98%;
+            color: #003466;
+        }
+
+        #Formrcrtuser > div {
+            clear: both;
+            padding: 1px;
+            margin: 0 0 15px 0;
+        }
+
+        #Formrcrtuser form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            #Formrcrtuser form-group label {
+                flex-basis: 30%;
+                padding-right: 10px;
+                text-align: left;
+                align-self: center;
+            }
+
+
+            #Formrcrtuser form-group input {
+                flex-basis: 43%;
+                padding: 8px;
+                border: 1.5px solid #ccc;
+                border-radius: 3px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+
+        #Formrcrtuser input:hover {
+            color: #003466 !important;
+            box-shadow: 0 0 0 1.7px hsl(209.4, 100%, 20%), 0 0 0 3px hsl(var(--white)) !important;
+            border: 1.8px solid !important;
+        }
+
+        #Formrcrtuser text-danger {
+            color: red;
+            font-size: 0.9em;
+            flex-basis: 100%;
+        }
+
+        #Formrcrtuser btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        #Formrcrtuser btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #Formrcrtuser btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            margin-top: 10px;
+        }
+
+    #Contenedor_Bottom_Back1 {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+
+    #RoleName {
+        color: #003466;
+        border: 2px solid hsl(209.4, 100%, 20%)
+    }
+
+
+    #EDIId {
+        color: #003466;
+        border: 2px solid hsl(209.4, 100%, 20%)
+    }
+
+
+    /* =========
+    Estilos Para La Vista Update 
+   ========= */
